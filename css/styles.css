@@ -1,0 +1,773 @@
+/* ============================================================
+   WINDSOR FOREST TAKEOVER CRUISE — Stylesheet
+   ============================================================ */
+
+:root {
+    --wf-green:       #006633;
+    --wf-green-hover: #007a3d;
+    --wf-green-dark:  #004d26;
+    --rc-navy:        #0e0b28;
+    --wf-gold:        #C9A84C;
+    --wf-gold-light:  #e0be72;
+    --text-light:     #FFFFFF;
+    --bg-dark:        #131313;
+    --bg-input:       #1e1e1e;
+    --border-input:   #333333;
+    --placeholder:    #555555;
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-script:  'Caveat', cursive;
+    --font-body:    'DM Sans', sans-serif;
+
+    --img-collage: url('../assets/photos/lunaratelier__A_dramatic_editorial_collage_artwork_on_a_solid_d2f89f4a-0029-426a-92b1-8e8db080a8fc_1.png');
+    --img-savannah: url('../assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png');
+    --img-grain:    url('../assets/photos/lunaratelier__Seamless_tileable_film_grain_texture_subtle_ana_01e24dd4-d008-4025-b65e-a13cc9131058_3.png');
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* ── Film Grain — dialed back so it adds texture, not noise ─ */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 500;               /* below form-section which sits at z-index 600 */
+    background-image: var(--img-grain);
+    background-size: 350px 350px;
+    background-repeat: repeat;
+    mix-blend-mode: screen;
+    opacity: 0.18;              /* was 0.45 — much subtler now */
+}
+
+/* ── Page Wrapper ────────────────────────────────────────── */
+.page-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SITE HEADER
+══════════════════════════════════════════════════════════ */
+.site-header {
+    text-align: center;
+    padding: 28px 0 10px;
+}
+
+.header-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 0.67rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wf-gold);
+    margin-bottom: 6px;
+    opacity: 0.8;
+}
+
+.eyebrow-line {
+    display: inline-block;
+    width: 36px;
+    height: 1px;
+    background: var(--wf-gold);
+    opacity: 0.5;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.88;
+    user-select: none;
+}
+
+.title-line-1 {
+    font-family: var(--font-script);
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.1;
+}
+
+.title-line-2 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.6rem);
+    letter-spacing: 0.1em;
+    background: linear-gradient(170deg, var(--wf-gold-light) 0%, var(--wf-gold) 55%, #9a7220 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtext {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+    margin-top: 8px;
+}
+
+.subtext-diamond {
+    font-size: 0.45rem;
+    color: var(--wf-gold);
+    opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HERO VIDEO — Collage + doves + video placeholder
+══════════════════════════════════════════════════════════ */
+.hero-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 0;
+    overflow: visible;  /* doves bleed outward */
+}
+
+.frame-outer {
+    position: relative;
+    width: clamp(340px, 62vw, 860px);
+    aspect-ratio: 16 / 9;
+    background-image: var(--img-collage);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.8));
+}
+
+/* The 16:9 video sits in the center at 74% of the frame width.
+   The collage shows on all edges as a natural surrounding frame. */
+.video-box {
+    position: relative;
+    width: 74%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* ── Video Placeholder ───────────────────────────────────── */
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    background-image: var(--img-savannah);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.vp-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.4) 0%,
+        rgba(0,0,0,0.2) 45%,
+        rgba(0,0,0,0.55) 100%
+    );
+}
+
+.vp-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+}
+
+.vp-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.65);
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.85);
+    padding-left: 4px;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.video-placeholder:hover .vp-play {
+    transform: scale(1.1);
+    background: rgba(0,102,51,0.35);
+    border-color: var(--wf-green);
+}
+
+.vp-label {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+}
+
+/* ── Floating Doves & Florals ────────────────────────────── */
+/*
+ * Doves use transparent PNGs — no blend mode needed.
+ * Hibiscus and plumeria still have black backgrounds so they
+ * keep mix-blend-mode: screen on their individual rules below.
+ */
+.deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Dove A — large, front-facing wings, upper-right quadrant */
+.deco-dove-a {
+    width: clamp(100px, 11vw, 170px);
+    top: -28%;
+    right: 2%;
+    transform: rotate(-8deg);
+    opacity: 0.93;
+}
+
+/* Dove B — side-view, outside the right edge, higher */
+.deco-dove-b {
+    width: clamp(75px, 8.5vw, 125px);
+    top: -14%;
+    right: -9%;
+    transform: rotate(18deg) scaleX(-1);
+    opacity: 0.82;
+}
+
+/* Dove C — compact pose, upper-left, flying away */
+.deco-dove-c {
+    width: clamp(65px, 7.5vw, 110px);
+    top: -20%;
+    left: 6%;
+    transform: rotate(-12deg) scaleX(-1);
+    opacity: 0.78;
+}
+
+/* Dove D — small, trailing at lower-right */
+.deco-dove-d {
+    width: clamp(50px, 6vw, 88px);
+    bottom: -8%;
+    right: 18%;
+    transform: rotate(14deg);
+    opacity: 0.68;
+}
+
+/* Hibiscus — bottom-left corner, warm accent (black bg → screen blend) */
+.deco-hibiscus {
+    width: clamp(70px, 8vw, 120px);
+    bottom: -18%;
+    left: -4%;
+    transform: rotate(-6deg);
+    opacity: 0.88;
+    mix-blend-mode: screen;
+}
+
+/* Plumeria — right edge, mid-height (black bg → screen blend) */
+.deco-plumeria {
+    width: clamp(60px, 7vw, 105px);
+    right: -6%;
+    top: 50%;
+    transform: translateY(-50%) rotate(28deg);
+    opacity: 0.8;
+    mix-blend-mode: screen;
+}
+
+/* ══════════════════════════════════════════════════════════
+   COUNTDOWN — below video, no box, open layout
+══════════════════════════════════════════════════════════ */
+.countdown-section {
+    text-align: center;
+    padding: 36px 0 20px;
+}
+
+.countdown-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+}
+
+.countdown-display {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+}
+
+.cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Large green numbers — the countdown IS the visual here */
+.cd-number {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    color: var(--wf-green);
+    line-height: 1;
+    min-width: 2ch;
+    text-align: center;
+    /* Subtle green glow — depth without a box */
+    text-shadow:
+        0 0 40px rgba(0,102,51,0.55),
+        0 0 80px rgba(0,102,51,0.2);
+}
+
+.cd-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 6px;
+    font-weight: 400;
+}
+
+/* Gold colon separator — sits between units at number height */
+.cd-sep {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    color: var(--wf-gold);
+    opacity: 0.55;
+    line-height: 1;
+    padding-top: 4px; /* optical align with number top */
+    user-select: none;
+}
+
+.countdown-ship {
+    font-family: var(--font-script);
+    font-size: 1.1rem;
+    color: rgba(201,168,76,0.45);
+    margin-top: 14px;
+    letter-spacing: 0.03em;
+}
+
+/* Expired message */
+.countdown-expired {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--wf-gold);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 40px rgba(201,168,76,0.4);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SUMMARY SECTION
+══════════════════════════════════════════════════════════ */
+.summary-section {
+    text-align: center;
+    padding: 10px 20px 28px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.tagline {
+    font-family: var(--font-script);
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: var(--wf-gold);
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.summary-body {
+    font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+}
+
+.summary-body em {
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CAROUSEL — mobile / tablet only
+══════════════════════════════════════════════════════════ */
+.carousel-section {
+    display: none; /* hidden by default */
+    align-items: center;
+    gap: 10px;
+    padding: 0 0 20px;
+}
+
+@media (max-width: 1199px) {
+    .carousel-section { display: flex; }
+}
+
+.carousel-btn {
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover { border-color: var(--wf-gold); color: var(--wf-gold); }
+
+.carousel-viewport {
+    flex: 1;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 12px;
+    padding: 6px 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carousel-viewport::-webkit-scrollbar { display: none; }
+
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 160px;
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(201,168,76,0.2);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.carousel-item:hover {
+    transform: scale(1.04);
+    border-color: rgba(201,168,76,0.5);
+}
+
+/* ══════════════════════════════════════════════════════════
+   FORM SECTION — below the fold, distinct background
+   z-index 600 sits above the grain overlay (500) so the
+   grain doesn't visually muddy the form inputs.
+══════════════════════════════════════════════════════════ */
+.form-section {
+    position: relative;
+    z-index: 600;
+    background-color: var(--rc-navy);
+    /* Subtle top accent line */
+    border-top: 1px solid rgba(201,168,76,0.25);
+    padding: 64px 48px 72px;
+    margin: 0 -48px; /* bleed to page edge */
+}
+
+.form-section-inner {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* Form section heading */
+.form-heading {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.form-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wf-gold);
+    opacity: 0.75;
+    margin-bottom: 8px;
+}
+
+.form-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.02em;
+}
+
+/* ── Form Controls ───────────────────────────────────────── */
+.form-container {
+    /* No background panel — the navy section IS the background */
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    margin-bottom: 14px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+/* Remove the extra bottom margin from grid children */
+.form-grid .input-group {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+}
+
+.input-group input,
+.input-group select {
+    background: var(--bg-input);
+    border: 1px solid var(--border-input);
+    height: 52px;
+    padding: 0 16px;
+    color: var(--text-light);
+    border-radius: 3px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.input-group input::placeholder {
+    color: var(--placeholder);
+    font-size: 0.88rem;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--wf-green);
+    box-shadow: 0 0 0 2px rgba(0,102,51,0.2);
+}
+
+/* Custom select */
+.select-wrapper { position: relative; }
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 36px;
+}
+
+.select-wrapper select option {
+    background: #1e1e1e;
+    color: var(--text-light);
+}
+
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--placeholder);
+    font-size: 0.6rem;
+}
+
+/* Form error */
+.form-error {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    background: rgba(255,80,80,0.07);
+    border: 1px solid rgba(255,80,80,0.2);
+    border-radius: 3px;
+}
+
+/* Submit button — big, bold, prominent */
+.submit-btn {
+    width: 100%;
+    background: var(--wf-green);
+    color: #FFF;
+    border: none;
+    height: 58px;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.14em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.13s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow:
+        0 4px 20px rgba(0,102,51,0.4),
+        0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--wf-green-hover);
+    transform: scale(1.012);
+}
+
+.submit-btn:active:not(:disabled) {
+    background: var(--wf-green-dark);
+    transform: scale(0.99);
+}
+
+.submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* CSS spinner */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.btn-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #FFF;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    flex-shrink: 0;
+}
+
+/* Success message */
+.success-message {
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.success-check {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--wf-green);
+    margin-bottom: 12px;
+    text-shadow: 0 0 30px rgba(0,102,51,0.6);
+}
+
+.success-message h3 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    color: var(--wf-gold);
+    margin-bottom: 8px;
+}
+
+.success-message p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.45);
+}
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════ */
+.site-footer {
+    position: relative;
+    z-index: 600;
+    background-color: var(--rc-navy);
+    text-align: center;
+    padding: 16px 0 22px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.63rem;
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.07em;
+    margin: 0 -48px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768–1199px)
+══════════════════════════════════════════════════════════ */
+@media (max-width: 1199px) {
+    .page-wrapper { padding: 0 28px; }
+
+    .frame-outer { width: min(80vw, 700px); }
+
+    .form-section { padding: 48px 28px 56px; margin: 0 -28px; }
+    .site-footer  { margin: 0 -28px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 767px)
+══════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+    .page-wrapper { padding: 0 16px; }
+
+    .site-header { padding: 18px 0 8px; }
+
+    .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
+
+    .frame-outer { width: 96%; }
+    .video-box   { width: 80%; }
+
+    /* Smaller decos on mobile */
+    .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
+    .deco-dove-b  { width: 60px;  top: -10%;  right: -5%; }
+    .deco-dove-c  { width: 55px;  top: -16%;  left: 4%; }
+    .deco-dove-d  { width: 44px;  bottom: -6%; right: 14%; }
+    .deco-hibiscus { width: 60px; bottom: -12%; left: -2%; }
+    .deco-plumeria { width: 50px; right: -4%; }
+
+    .vp-play { width: 44px; height: 44px; font-size: 1rem; }
+
+    /* Countdown — tighter on mobile */
+    .countdown-section { padding: 24px 0 16px; }
+    .cd-number { font-size: clamp(2.6rem, 10vw, 4rem); }
+    .cd-unit   { padding: 0 10px; }
+    .cd-sep    { font-size: clamp(1.4rem, 5vw, 2.2rem); }
+
+    .form-section { padding: 40px 16px 48px; margin: 0 -16px; }
+    .form-grid    { grid-template-columns: 1fr; gap: 0; }
+    .form-grid .input-group { margin-bottom: 14px; }
+    .form-title   { font-size: 2.4rem; }
+
+    .site-footer  { margin: 0 -16px; }
+}

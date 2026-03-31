@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windsor Forest Takeover Cruise</title>
+    <meta name="description" content="Windsor Forest alumni are taking over Royal Caribbean's Utopia of the Seas. Be the first to know when full details drop.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <div class="page-wrapper">
+
+        <!-- ══════════════════════════════════════
+             TITLE
+        ══════════════════════════════════════ -->
+        <header class="site-header" role="banner">
+            <p class="header-eyebrow">
+                <span class="eyebrow-line"></span>
+                Royal Caribbean &times; Utopia of the Seas
+                <span class="eyebrow-line"></span>
+            </p>
+            <h1 class="hero-title">
+                <span class="title-line-1">Windsor Forest</span>
+                <span class="title-line-2">TAKEOVER CRUISE</span>
+            </h1>
+            <p class="hero-subtext">
+                <span class="subtext-diamond">&#9670;</span>
+                Est. 1967 &bull; Savannah, Georgia
+                <span class="subtext-diamond">&#9670;</span>
+            </p>
+        </header>
+
+        <!-- ══════════════════════════════════════
+             HERO — Collage frame + doves + video
+        ══════════════════════════════════════ -->
+        <section class="hero-video" aria-label="Event visual">
+            <div class="frame-outer">
+
+                <!-- Video box — swap placeholder div for <iframe> when ready -->
+                <div class="video-box">
+                    <div class="video-placeholder" role="img" aria-label="Promo video coming soon">
+                        <div class="vp-overlay"></div>
+                        <div class="vp-content">
+                            <span class="vp-play" aria-hidden="true">&#9654;</span>
+                            <p class="vp-label">Promo Video Dropping Soon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                    Four doves, each with a different pose/angle.
+                    mix-blend-mode: screen removes their black backgrounds.
+                -->
+                <!-- Dove A — large, front-facing, upper right -->
+                <img class="deco deco-dove-a"
+                    src="assets/photos/doves-transparent/Untitled design-2.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+                <!-- Dove B — side view, far upper right -->
+                <img class="deco deco-dove-b"
+                    src="assets/photos/doves-transparent/Untitled design.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+                <!-- Dove C — compact, upper left -->
+                <img class="deco deco-dove-c"
+                    src="assets/photos/doves-transparent/Untitled design-3.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+                <!-- Dove D — small, lower right, trailing -->
+                <img class="deco deco-dove-d"
+                    src="assets/photos/doves-transparent/Untitled design-4.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+                <!-- Hibiscus — bottom left -->
+                <img class="deco deco-hibiscus"
+                    src="assets/photos/lunaratelier__A_single_tropical_hibiscus_flower_in_full_bloom_10b3d157-1d39-4d1d-96fd-9380c806e84e_1.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+                <!-- Plumeria — right center -->
+                <img class="deco deco-plumeria"
+                    src="assets/photos/lunaratelier__A_single_white_plumeria_frangipani_flower_five__36c6a858-08c9-4620-b00b-7cb7ed1ac843_2.png"
+                    alt="" aria-hidden="true" loading="lazy">
+
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             COUNTDOWN — directly below video
+        ══════════════════════════════════════ -->
+        <section class="countdown-section" aria-label="Countdown to departure">
+            <p class="countdown-eyebrow">Until We Set Sail</p>
+            <div class="countdown-display" id="countdown-container">
+                <div class="cd-unit">
+                    <span id="days" class="cd-number">--</span>
+                    <span class="cd-label">Days</span>
+                </div>
+                <span class="cd-sep" aria-hidden="true">:</span>
+                <div class="cd-unit">
+                    <span id="hours" class="cd-number">--</span>
+                    <span class="cd-label">Hours</span>
+                </div>
+                <span class="cd-sep" aria-hidden="true">:</span>
+                <div class="cd-unit">
+                    <span id="minutes" class="cd-number">--</span>
+                    <span class="cd-label">Minutes</span>
+                </div>
+                <span class="cd-sep" aria-hidden="true">:</span>
+                <div class="cd-unit">
+                    <span id="seconds" class="cd-number">--</span>
+                    <span class="cd-label">Seconds</span>
+                </div>
+            </div>
+            <p class="countdown-ship">&#9875; Utopia of the Seas</p>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             SUMMARY
+        ══════════════════════════════════════ -->
+        <section class="summary-section" aria-label="Event summary">
+            <p class="tagline">&ldquo;The Knights Are Setting Sail.&rdquo;</p>
+            <p class="summary-body">
+                Windsor Forest alumni are taking over Royal Caribbean's <em>Utopia of the Seas</em> —
+                one of the biggest cruise ships in the world.
+                Be the first to know when full details drop.
+            </p>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             CAROUSEL — mobile / tablet only
+        ══════════════════════════════════════ -->
+        <section class="carousel-section" aria-label="Event mood board">
+            <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
+            <div class="carousel-viewport" role="list">
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png')"
+                     aria-label="Savannah, Georgia"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__A_massive_modern_cruise_ship_photographed_from__f5a24fdd-64f7-4d5c-b0a0-0e537d2d5e68_2.png')"
+                     aria-label="Utopia of the Seas"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__A_medieval_knight_standing_in_a_heroic_pose_wea_4b71b047-cc91-4da0-b80b-b135f5974cd5_1.png'); background-color:#1a1a1a;"
+                     aria-label="The Windsor Forest Knight"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__Dense_mixed-media_collage_artwork_on_black_back_5896bf47-53bc-4a94-8385-9810370d8dc6_3.png')"
+                     aria-label="Collage artwork"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__A_single_white_dove_in_flight_wings_fully_sprea_7c033377-397c-4755-ab67-1910b4377079_2.png')"
+                     aria-label="White dove"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__A_single_tropical_hibiscus_flower_in_full_bloom_10b3d157-1d39-4d1d-96fd-9380c806e84e_1.png')"
+                     aria-label="Hibiscus"></div>
+                <div class="carousel-item" role="listitem"
+                     style="background-image: url('assets/photos/lunaratelier__A_single_white_plumeria_frangipani_flower_five__36c6a858-08c9-4620-b00b-7cb7ed1ac843_2.png')"
+                     aria-label="Plumeria"></div>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             FORM SECTION — below the fold, prominent
+        ══════════════════════════════════════ -->
+        <section class="form-section" id="rsvp" aria-label="Interest registration">
+
+            <div class="form-section-inner">
+                <div class="form-heading">
+                    <p class="form-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        Secure Your Spot
+                        <span class="eyebrow-line"></span>
+                    </p>
+                    <h2 class="form-title">JOIN THE WAITLIST</h2>
+                    <p class="form-subtitle">Drop your info and we'll reach out the moment details are live.</p>
+                </div>
+
+                <div id="form-container" class="form-container">
+                    <form id="rsvp-form" novalidate>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required
+                                       autocomplete="given-name" placeholder="First">
+                            </div>
+                            <div class="input-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required
+                                       autocomplete="family-name" placeholder="Last">
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required
+                                       autocomplete="email" placeholder="you@example.com">
+                            </div>
+                            <div class="input-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required
+                                       autocomplete="tel" placeholder="(912) 555-0100">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="graduatingClass">Graduating Class</label>
+                            <div class="select-wrapper">
+                                <select id="graduatingClass" name="graduatingClass" required>
+                                    <option value="" disabled selected>Select your class year</option>
+                                </select>
+                                <span class="select-arrow" aria-hidden="true">&#9660;</span>
+                            </div>
+                        </div>
+
+                        <p id="form-error" class="form-error" role="alert" aria-live="polite" hidden></p>
+
+                        <button type="submit" id="submit-btn" class="submit-btn">
+                            <span class="btn-text">COUNT ME IN</span>
+                            <span class="btn-spinner" hidden aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="success-message" class="success-message" hidden>
+                    <span class="success-check" aria-hidden="true">&#10003;</span>
+                    <h3>You&rsquo;re on the list, Knight!</h3>
+                    <p>We&rsquo;ll hit you up when the details drop.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ══════════════════════════════════════
+             FOOTER
+        ══════════════════════════════════════ -->
+        <footer class="site-footer">
+            <p>
+                Windsor Forest High School Alumni Association &mdash; Savannah, Georgia
+                &nbsp;&bull;&nbsp;
+                &copy; <span id="current-year"></span>
+            </p>
+        </footer>
+
+    </div><!-- /.page-wrapper -->
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
