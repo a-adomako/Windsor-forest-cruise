@@ -13,7 +13,7 @@
     --bg-dark:        #1E2410;
     --bg-input:       #1e1e1e;
     --border-input:   #333333;
-    --placeholder:    #555555;
+    --placeholder:    #999999;
 
     --font-display: 'Bebas Neue', sans-serif;
     --font-script:  'Caveat', cursive;
@@ -486,7 +486,7 @@ body {
 .form-section {
     position: relative;
     z-index: 600;
-    background-color: var(--rc-navy);
+    background-color: #FFFFFF;
     /* Subtle top accent line */
     border-top: 1px solid rgba(201,168,76,0.25);
     padding: 64px 48px 72px;
@@ -522,14 +522,14 @@ body {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     letter-spacing: 0.1em;
-    color: var(--text-light);
+    color: #1E2410;
     line-height: 1;
     margin-bottom: 10px;
 }
 
 .form-subtitle {
     font-size: 0.88rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.45);
     letter-spacing: 0.02em;
 }
 
@@ -562,16 +562,16 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.5);
 }
 
 .input-group input,
 .input-group select {
-    background: var(--bg-input);
-    border: 1px solid var(--border-input);
+    background: #f5f5f5;
+    border: 1px solid #cccccc;
     height: 52px;
     padding: 0 16px;
-    color: var(--text-light);
+    color: #1a1a1a;
     border-radius: 3px;
     font-family: var(--font-body);
     font-size: 0.95rem;
@@ -602,8 +602,8 @@ body {
 }
 
 .select-wrapper select option {
-    background: #1e1e1e;
-    color: var(--text-light);
+    background: #f5f5f5;
+    color: #1a1a1a;
 }
 
 .select-arrow {
@@ -703,7 +703,7 @@ body {
 
 .success-message p {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(0,0,0,0.5);
 }
 
 /* ══════════════════════════════════════════════════════════
