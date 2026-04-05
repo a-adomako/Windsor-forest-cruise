@@ -286,23 +286,23 @@ body {
     opacity: 0.68;
 }
 
-/* Red flower — bottom-left corner */
+/* Hibiscus — bottom-left corner, warm accent (black bg → screen blend) */
 .deco-hibiscus {
     width: clamp(70px, 8vw, 120px);
     bottom: -18%;
     left: -4%;
     transform: rotate(-6deg);
-    opacity: 0.95;
+    opacity: 0.88;
     mix-blend-mode: screen;
 }
 
-/* White flower — right edge, mid-height */
+/* Plumeria — right edge, mid-height (black bg → screen blend) */
 .deco-plumeria {
     width: clamp(60px, 7vw, 105px);
     right: -6%;
     top: 50%;
     transform: translateY(-50%) rotate(28deg);
-    opacity: 0.9;
+    opacity: 0.8;
     mix-blend-mode: screen;
 }
 
