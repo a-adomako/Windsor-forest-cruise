@@ -1,27 +1,31 @@
 function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
+
     // Parse the JSON data sent from the form
     var data = JSON.parse(e.postData.contents);
-    
-    // Append a new row to the active sheet
+
+    // Split timestamp into separate date and time strings
+    var now = new Date();
+    var dateSubmitted = Utilities.formatDate(now, Session.getScriptTimeZone(), 'MM/dd/yyyy');
+    var timeSubmitted = Utilities.formatDate(now, Session.getScriptTimeZone(), 'hh:mm:ss a');
+
+    // Columns: Date Submitted | Time Submitted | First Name | Last Name | Email | Phone Number | Graduating Class
     sheet.appendRow([
-      new Date(),           // Timestamp
-      data.firstName,       // First Name
-      data.lastName,        // Last Name
-      data.email,           // Email
-      data.phone,           // Phone Number
-      data.graduatingClass  // Graduating Class
+      dateSubmitted,
+      timeSubmitted,
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.phone,
+      data.graduatingClass
     ]);
-    
-    // Return success response to the client
+
     return ContentService
       .createTextOutput(JSON.stringify({ result: "success" }))
       .setMimeType(ContentService.MimeType.JSON);
-      
+
   } catch (error) {
-    // Return error message if something fails
     return ContentService
       .createTextOutput(JSON.stringify({ result: "error", message: error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
