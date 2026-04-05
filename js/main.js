@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
        Change SAIL_DATE to the real event date when confirmed.
        Format: 'YYYY-MM-DDTHH:MM:SS-05:00' (Eastern Time)
     ──────────────────────────────────────────────────────── */
-    const SAIL_DATE = new Date('2027-01-01T00:00:00-05:00').getTime();
+    const SAIL_DATE = new Date('2026-06-19T00:00:00-05:00').getTime();
 
     const daysEl    = document.getElementById('days');
     const hoursEl   = document.getElementById('hours');
