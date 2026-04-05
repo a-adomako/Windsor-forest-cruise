@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setLoading(loading) {
         submitBtn.disabled = loading;
-        if (btnText)    btnText.hidden    = loading;
-        if (btnSpinner) btnSpinner.hidden = !loading;
+        if (btnText)    btnText.style.display    = loading ? 'none' : 'inline';
+        if (btnSpinner) btnSpinner.style.display = loading ? 'inline-block' : 'none';
     }
 
     function validatePhone(value) {

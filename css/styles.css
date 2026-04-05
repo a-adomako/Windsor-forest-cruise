@@ -672,7 +672,7 @@ body {
 }
 
 .btn-spinner {
-    display: inline-block;
+    display: none;
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255,255,255,0.3);
