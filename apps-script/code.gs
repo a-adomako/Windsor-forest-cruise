@@ -7,7 +7,7 @@ function doPost(e) {
 
     // Split timestamp into separate date and time strings
     var now = new Date();
-    var dateSubmitted = Utilities.formatDate(now, Session.getScriptTimeZone(), 'MM/dd/yyyy');
+    var dateSubmitted = Utilities.formatDate(now, Session.getScriptTimeZone(), 'dd-MMM-yyyy');
     var timeSubmitted = Utilities.formatDate(now, Session.getScriptTimeZone(), 'hh:mm:ss a');
 
     // Columns: Date Submitted | Time Submitted | First Name | Last Name | Email | Phone Number | Graduating Class
