@@ -129,8 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
          5. Uncomment the grecaptcha.execute() lines below.
     ──────────────────────────────────────────────────────── */
 
-    // ↓ PASTE YOUR DEPLOYED APPS SCRIPT URL HERE ↓
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbP7ViDQXmqLOK8z234p3eJEyx1XaK_VRQaforZM0hNf3qfwoH5wrvhxyo8j68DfgE/exec';
 
     const form        = document.getElementById('rsvp-form');
     const submitBtn   = document.getElementById('submit-btn');
@@ -202,23 +201,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = { firstName, lastName, email, phone, graduatingClass };
 
             try {
-                /* ── UNCOMMENT FETCH when you have a real APPS_SCRIPT_URL ──
-                   Note: mode 'no-cors' is required for Google Apps Script.
-                   The response body will be opaque (unreadable) with no-cors,
-                   so we treat any completion as success. If you need to read
-                   the response, deploy the script with CORS headers instead.
-
-                const response = await fetch(APPS_SCRIPT_URL, {
+                await fetch(APPS_SCRIPT_URL, {
                     method:  'POST',
                     mode:    'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body:    JSON.stringify(payload),
                 });
-                */
-
-                /* ── DEMO MODE: simulated delay (remove when fetch is active) ── */
-                await new Promise(resolve => setTimeout(resolve, 1200));
-                /* ── END DEMO MODE ── */
 
                 // Optional reCAPTCHA v3 token (uncomment if using reCAPTCHA):
                 // payload.recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' });
