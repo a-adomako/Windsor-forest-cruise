@@ -293,6 +293,7 @@ body {
     left: -4%;
     transform: rotate(-6deg);
     opacity: 0.95;
+    mix-blend-mode: screen;
 }
 
 /* White flower — right edge, mid-height */
@@ -302,6 +303,7 @@ body {
     top: 50%;
     transform: translateY(-50%) rotate(28deg);
     opacity: 0.9;
+    mix-blend-mode: screen;
 }
 
 /* ══════════════════════════════════════════════════════════
