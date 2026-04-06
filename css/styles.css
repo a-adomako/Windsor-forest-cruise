@@ -63,7 +63,6 @@ body {
     margin: 0 auto;
     padding: 0 48px;
     position: relative;
-    z-index: 10;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -149,6 +148,8 @@ body {
     align-items: center;
     padding: 10px 0 0;
     overflow: visible;  /* doves bleed outward */
+    position: relative;
+    z-index: 600; /* above grain overlay (500) so video is clean */
 }
 
 .frame-outer {
