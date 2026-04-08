@@ -19,7 +19,7 @@
     --font-script:  'Caveat', cursive;
     --font-body:    'DM Sans', sans-serif;
 
-    --img-collage: url('../assets/photos/frame-image-05.png');
+    /* --img-collage: frame image now loaded as <img> overlay in HTML */
     --img-savannah: url('../assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png');
     --img-grain:    url('../assets/photos/lunaratelier__Seamless_tileable_film_grain_texture_subtle_ana_01e24dd4-d008-4025-b65e-a13cc9131058_3.png');
 }
@@ -156,15 +156,22 @@ body {
     position: relative;
     width: clamp(468px, 101vw, 1352px);
     aspect-ratio: 2426 / 2032;   /* matches frame-image-05.png natural dimensions */
-    background-image: var(--img-collage);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: visible;
     filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.8));
+}
+
+/* Frame image sits above the video so it overlaps the edges naturally */
+.frame-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;   /* fill to match exact container aspect-ratio — no stretch */
+    z-index: 4;
+    pointer-events: none; /* video controls remain clickable underneath */
 }
 
 /* Video sits centered; frame image shows as a natural border around it */
