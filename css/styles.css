@@ -154,7 +154,7 @@ body {
 
 .frame-outer {
     position: relative;
-    width: clamp(360px, 78vw, 1040px);
+    width: clamp(468px, 101vw, 1352px);
     aspect-ratio: 16 / 9;
     background-image: var(--img-collage);
     background-size: 100% 100%;   /* show full frame image with no cropping */
@@ -743,7 +743,7 @@ body {
 @media (max-width: 1199px) {
     .page-wrapper { padding: 0 28px; }
 
-    .frame-outer { width: min(88vw, 820px); }
+    .frame-outer { width: min(98vw, 1066px); }
 
     .form-section { padding: 48px 28px 56px; }
     .site-footer  { padding: 14px 28px 20px; }
@@ -760,7 +760,7 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .frame-outer { width: 98%; }
+    .frame-outer { width: 100%; }
     .video-box   { width: 70%; }
 
     /* Smaller decos on mobile */
