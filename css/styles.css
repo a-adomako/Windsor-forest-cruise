@@ -19,7 +19,7 @@
     --font-script:  'Caveat', cursive;
     --font-body:    'DM Sans', sans-serif;
 
-    --img-collage: url('../assets/photos/video-frame-03.png');
+    --img-collage: url('../assets/photos/frame-image-04.png');
     --img-savannah: url('../assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png');
     --img-grain:    url('../assets/photos/lunaratelier__Seamless_tileable_film_grain_texture_subtle_ana_01e24dd4-d008-4025-b65e-a13cc9131058_3.png');
 }
@@ -155,7 +155,7 @@ body {
 .frame-outer {
     position: relative;
     width: clamp(468px, 101vw, 1352px);
-    aspect-ratio: 2782 / 2032;   /* matches video-frame-03.png natural dimensions */
+    aspect-ratio: 2506 / 2032;   /* matches frame-image-04.png natural dimensions */
     background-image: var(--img-collage);
     background-size: cover;
     background-position: center;
