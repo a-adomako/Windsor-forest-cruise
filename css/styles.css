@@ -19,7 +19,7 @@
     --font-script:  'Caveat', cursive;
     --font-body:    'DM Sans', sans-serif;
 
-    --img-collage: url('../assets/photos/video-frame-02.png');
+    --img-collage: url('../assets/photos/video-frame-03.png');
     --img-savannah: url('../assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png');
     --img-grain:    url('../assets/photos/lunaratelier__Seamless_tileable_film_grain_texture_subtle_ana_01e24dd4-d008-4025-b65e-a13cc9131058_3.png');
 }
@@ -146,7 +146,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0 0;
+    padding: 32px 0 16px;
     overflow: visible;  /* doves bleed outward */
     position: relative;
     z-index: 600; /* above grain overlay (500) so video is clean */
@@ -154,11 +154,12 @@ body {
 
 .frame-outer {
     position: relative;
-    width: clamp(340px, 62vw, 860px);
+    width: clamp(360px, 78vw, 1040px);
     aspect-ratio: 16 / 9;
     background-image: var(--img-collage);
-    background-size: cover;
+    background-size: 100% 100%;   /* show full frame image with no cropping */
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,11 +167,10 @@ body {
     filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.8));
 }
 
-/* The 16:9 video sits in the center at 74% of the frame width.
-   The collage shows on all edges as a natural surrounding frame. */
+/* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 74%;
+    width: 68%;
     aspect-ratio: 16 / 9;
     background: #000;
     z-index: 2;
@@ -743,7 +743,7 @@ body {
 @media (max-width: 1199px) {
     .page-wrapper { padding: 0 28px; }
 
-    .frame-outer { width: min(80vw, 700px); }
+    .frame-outer { width: min(88vw, 820px); }
 
     .form-section { padding: 48px 28px 56px; }
     .site-footer  { padding: 14px 28px 20px; }
@@ -760,8 +760,8 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .frame-outer { width: 96%; }
-    .video-box   { width: 80%; }
+    .frame-outer { width: 98%; }
+    .video-box   { width: 70%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
