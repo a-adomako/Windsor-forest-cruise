@@ -192,8 +192,6 @@
             new YT.Player('yt-player', {
                 events: {
                     onReady: function(e) {
-                        e.target.unMute();
-                        e.target.setVolume(100);
                         e.target.playVideo();
                     }
                 }
