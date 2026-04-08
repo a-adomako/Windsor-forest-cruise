@@ -155,9 +155,9 @@ body {
 .frame-outer {
     position: relative;
     width: clamp(468px, 101vw, 1352px);
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2782 / 2032;   /* matches video-frame-03.png natural dimensions */
     background-image: var(--img-collage);
-    background-size: 100% 100%;   /* show full frame image with no cropping */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
