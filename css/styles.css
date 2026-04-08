@@ -170,7 +170,7 @@ body {
 /* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 68%;
+    width: 52%;
     aspect-ratio: 16 / 9;
     background: #000;
     z-index: 2;
@@ -761,7 +761,7 @@ body {
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
     .frame-outer { width: 100%; }
-    .video-box   { width: 70%; }
+    .video-box   { width: 52%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
