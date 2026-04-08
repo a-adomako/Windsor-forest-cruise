@@ -46,7 +46,8 @@
 
                 <div class="video-box">
                     <iframe
-                        src="https://www.youtube.com/embed/y0_nhqUXLYU?autoplay=1"
+                        id="yt-player"
+                        src="https://www.youtube.com/embed/y0_nhqUXLYU?autoplay=1&mute=1&enablejsapi=1"
                         title="Windsor Forest Takeover Cruise"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -184,5 +185,23 @@
     </footer>
 
     <script src="js/main.js" defer></script>
+
+    <!-- YouTube IFrame API: autoplay muted, then unmute once playing -->
+    <script>
+        window.onYouTubeIframeAPIReady = function() {
+            new YT.Player('yt-player', {
+                events: {
+                    onReady: function(e) { e.target.playVideo(); },
+                    onStateChange: function(e) {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            e.target.unMute();
+                            e.target.setVolume(100);
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+    <script src="https://www.youtube.com/iframe_api" async></script>
 </body>
 </html>
