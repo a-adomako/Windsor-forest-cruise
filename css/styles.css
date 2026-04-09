@@ -430,6 +430,8 @@ body {
     line-height: 1.7;
 }
 
+.summary-line { display: block; }
+
 .summary-body em {
     font-style: italic;
     color: rgba(255,255,255,0.75);
