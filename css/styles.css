@@ -423,7 +423,7 @@ body {
 }
 
 .summary-body {
-    font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: rgba(0,0,0,0.6);
     line-height: 1.7;
 }
