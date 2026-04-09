@@ -508,7 +508,7 @@ body {
 .form-section {
     position: relative;
     z-index: 600;
-    background-color: var(--wf-green);
+    background-color: #1e2411;
     border-top: 3px solid var(--wf-gold);
     padding: 64px 48px 72px;
     width: 100%;
