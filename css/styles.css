@@ -152,30 +152,36 @@ body {
     z-index: 600; /* above grain overlay (500) so video is clean */
 }
 
-/* Wrapper: video at natural 16:9, frame image absolutely covers it */
-.video-wrap {
+.frame-outer {
     position: relative;
-    width: clamp(320px, 72vw, 960px);
+    width: clamp(468px, 101vw, 1352px);
+    aspect-ratio: 2552 / 2312;   /* matches frame-image-07.png natural dimensions */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
     filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.8));
 }
 
-.video-box {
-    position: relative;
+/* Frame image sits above the video so it overlaps the edges naturally */
+.frame-overlay {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    overflow: hidden;
+    height: 100%;
+    object-fit: fill;   /* fill to match exact container aspect-ratio — no stretch */
+    z-index: 4;
+    pointer-events: none; /* video controls remain clickable underneath */
 }
 
-/* Frame image layered on top, sized to the wrapper, pointer-events off */
-.frame-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 160%;   /* oversized so the decorative border bleeds past video edges */
-    pointer-events: none;
-    z-index: 4;
+/* Video sits centered; frame image shows as a natural border around it */
+.video-box {
+    position: relative;
+    width: 52%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    z-index: 2;
+    overflow: hidden;
 }
 
 .video-box iframe {
@@ -744,7 +750,7 @@ body {
 @media (max-width: 1199px) {
     .page-wrapper { padding: 0 28px; }
 
-    .video-wrap { width: min(92vw, 820px); }
+    .frame-outer { width: min(98vw, 1066px); }
 
     .form-section { padding: 48px 28px 56px; }
     .site-footer  { padding: 14px 28px 20px; }
@@ -761,7 +767,8 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .video-wrap { width: 96%; }
+    .frame-outer { width: 100%; }
+    .video-box   { width: 52%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
