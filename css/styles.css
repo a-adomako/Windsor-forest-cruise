@@ -79,8 +79,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    font-size: 0.67rem;
-    font-weight: 300;
+    font-size: 0.82rem;
+    font-weight: 400;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #1a1a1a;
@@ -333,8 +333,8 @@ body {
 
 .countdown-eyebrow {
     font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(0,0,0,0.55);
@@ -389,7 +389,7 @@ body {
 
 .countdown-ship {
     font-family: var(--font-script);
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: rgba(0,0,0,0.6);
     margin-top: 14px;
     letter-spacing: 0.03em;
@@ -418,7 +418,7 @@ body {
     font-family: var(--font-script);
     font-size: clamp(1.5rem, 2.5vw, 2.1rem);
     font-weight: 700;
-    color: var(--wf-gold);
+    color: #1a3a2d;
     line-height: 1.2;
     margin-bottom: 10px;
 }
