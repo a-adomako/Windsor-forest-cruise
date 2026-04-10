@@ -83,7 +83,7 @@ body {
     font-weight: 400;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #1a1a1a;
+    color: #1a3a2d;
     margin-bottom: 6px;
     opacity: 1;
 }
@@ -108,7 +108,7 @@ body {
     font-family: var(--font-script);
     font-size: clamp(2rem, 4vw, 3.6rem);
     font-weight: 700;
-    color: #1a1a1a;
+    color: #1a3a2d;
     line-height: 1.1;
 }
 
@@ -116,9 +116,7 @@ body {
     font-family: var(--font-display);
     font-size: clamp(3rem, 6vw, 5.6rem);
     letter-spacing: 0.1em;
-    background: linear-gradient(170deg, var(--wf-gold-light) 0%, var(--wf-gold) 55%, #9a7220 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #1a3a2d;
     background-clip: text;
 }
 
@@ -337,7 +335,7 @@ body {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.55);
+    color: #1a3a2d;
     margin-bottom: 16px;
 }
 
@@ -359,7 +357,7 @@ body {
 .cd-number {
     font-family: var(--font-display);
     font-size: clamp(3.5rem, 7vw, 6.5rem);
-    color: var(--wf-green);
+    color: #1a3a2d;
     line-height: 1;
     min-width: 2ch;
     text-align: center;
@@ -371,7 +369,7 @@ body {
     font-size: 0.75rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.6);
+    color: #1a3a2d;
     margin-top: 6px;
     font-weight: 400;
 }
@@ -380,7 +378,7 @@ body {
 .cd-sep {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.8rem);
-    color: var(--wf-gold);
+    color: #1a3a2d;
     opacity: 0.55;
     line-height: 1;
     padding-top: 4px; /* optical align with number top */
@@ -390,7 +388,7 @@ body {
 .countdown-ship {
     font-family: var(--font-script);
     font-size: 1.4rem;
-    color: rgba(0,0,0,0.6);
+    color: #1a3a2d;
     margin-top: 14px;
     letter-spacing: 0.03em;
 }
@@ -425,7 +423,7 @@ body {
 
 .summary-body {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
-    color: rgba(0,0,0,0.6);
+    color: #1a3a2d;
     line-height: 1.7;
 }
 
@@ -433,7 +431,7 @@ body {
 
 .summary-body em {
     font-style: italic;
-    color: rgba(0,0,0,0.75);
+    color: #1a3a2d;
 }
 
 /* ══════════════════════════════════════════════════════════
