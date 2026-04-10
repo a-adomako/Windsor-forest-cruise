@@ -769,7 +769,7 @@ body {
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
     .frame-outer { width: 100%; }
-    .video-box   { width: 65%; }
+    .video-box   { width: 75%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
