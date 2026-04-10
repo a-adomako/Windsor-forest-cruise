@@ -38,6 +38,10 @@ html {
 body {
     font-family: var(--font-body);
     background-color: #f4dec3;
+    background-image: url('../assets/photos/natural-yellow-sand-beach-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #1a1a1a;
     line-height: 1.5;
     overflow-x: hidden;
@@ -49,11 +53,8 @@ body {
     inset: 0;
     pointer-events: none;
     z-index: 500;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='sand'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='6' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23sand)' opacity='1'/%3E%3C/svg%3E");
-    background-size: 300px 300px;
-    background-repeat: repeat;
-    mix-blend-mode: multiply;
-    opacity: 0.55;
+    background: transparent;
+    opacity: 0;
 }
 
 /* ── Page Wrapper ────────────────────────────────────────── */
