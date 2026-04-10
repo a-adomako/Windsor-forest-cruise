@@ -41,7 +41,7 @@ body {
     background-image: url('../assets/photos/natural-yellow-sand-beach-background.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: #1a1a1a;
     line-height: 1.5;
     overflow-x: hidden;
