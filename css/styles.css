@@ -154,7 +154,7 @@ body {
 
 .frame-outer {
     position: relative;
-    width: clamp(468px, 101vw, 1352px);
+    width: clamp(560px, 110vw, 1600px);
     aspect-ratio: 3282 / 2592;   /* matches frame-image-07.png natural dimensions */
     display: flex;
     align-items: center;
@@ -178,7 +178,7 @@ body {
 /* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 52%;
+    width: 62%;
     aspect-ratio: 16 / 9;
     background: #000;
     z-index: 2;
@@ -751,7 +751,7 @@ body {
 @media (max-width: 1199px) {
     .page-wrapper { padding: 0 28px; }
 
-    .frame-outer { width: min(98vw, 1066px); }
+    .frame-outer { width: min(100vw, 1240px); }
 
     .form-section { padding: 48px 28px 56px; }
     .site-footer  { padding: 14px 28px 20px; }
@@ -769,7 +769,7 @@ body {
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
     .frame-outer { width: 100%; }
-    .video-box   { width: 52%; }
+    .video-box   { width: 65%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
