@@ -153,7 +153,7 @@ body {
 
 .frame-outer {
     position: relative;
-    width: calc(100vw - 80px);   /* full screen width minus 40px padding each side */
+    width: calc(100vw - 40px);   /* full screen width minus 20px padding each side */
     aspect-ratio: 3240 / 2554;   /* matches frame-image-11.png natural dimensions */
     display: flex;
     align-items: center;
@@ -177,7 +177,7 @@ body {
 /* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 70%;
+    width: 84%;
     aspect-ratio: 16 / 9;
     background: #000;
     z-index: 2;
@@ -750,7 +750,7 @@ body {
 @media (max-width: 1199px) {
     .page-wrapper { padding: 0 28px; }
 
-    .frame-outer { width: calc(100vw - 56px); max-width: none; }
+    .frame-outer { width: calc(100vw - 28px); max-width: none; }
 
     .form-section { padding: 48px 28px 56px; }
     .site-footer  { padding: 14px 28px 20px; }
@@ -767,8 +767,8 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .frame-outer { width: calc(100vw - 32px); max-width: none; }
-    .video-box   { width: 75%; }
+    .frame-outer { width: calc(100vw - 16px); max-width: none; }
+    .video-box   { width: 90%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
