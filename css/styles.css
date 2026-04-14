@@ -182,7 +182,7 @@ body {
     background: #000;
     z-index: 2;
     overflow: hidden;
-    transform: translate(0%, 10%);
+    transform: translate(1%, 10%);
 }
 
 .video-box iframe {
