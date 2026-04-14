@@ -768,7 +768,7 @@ body {
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
     .frame-outer { width: 110vw; max-width: none; margin-left: -5vw; }
-    .video-box   { width: 62%; }
+    .video-box   { width: 50%; }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
