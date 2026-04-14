@@ -162,16 +162,14 @@ body {
     filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.8));
 }
 
-/* Frame image sits above the video so it overlaps the edges naturally */
+/* Frame image sits behind the video — art shows around all four edges */
 .frame-overlay {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: fill;   /* fill to match exact container aspect-ratio — no stretch */
-    transform: translate(-2%, -2%);
-    z-index: 4;
-    pointer-events: none; /* video controls remain clickable underneath */
+    z-index: 1;
 }
 
 /* Video sits centered; frame image shows as a natural border around it */
