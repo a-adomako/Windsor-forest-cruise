@@ -768,8 +768,9 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .frame-outer { width: 110vw; max-width: none; margin-left: -5vw; }
-    .video-box   { width: 57%; transform: translate(2%, 1%); }
+    .frame-outer   { width: 110vw; max-width: none; margin-left: -5vw; }
+    .video-box     { width: 57%; transform: translate(2%, 1%); }
+    .frame-overlay { content: url('../assets/photos/frame-image-20.png'); }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
