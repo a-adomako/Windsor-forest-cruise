@@ -177,7 +177,7 @@ body {
 /* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 61.2%;
+    width: 56.2%;
     aspect-ratio: 16 / 9;
     background: #000;
     z-index: 2;
