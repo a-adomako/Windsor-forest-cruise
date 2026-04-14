@@ -154,7 +154,7 @@ body {
 .frame-outer {
     position: relative;
     width: calc(100vw - 40px);   /* full screen width minus 20px padding each side */
-    aspect-ratio: 10822 / 9110;   /* matches frame-image-17.png natural dimensions */
+    aspect-ratio: 5841 / 4998;   /* matches frame-image-18.png natural dimensions */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,8 +176,8 @@ body {
 /* Video sits centered; frame image shows as a natural border around it */
 .video-box {
     position: relative;
-    width: 67%;
-    aspect-ratio: 16 / 9;
+    width: 54.7%;
+    aspect-ratio: 3194 / 1984;
     background: #000;
     z-index: 2;
     overflow: hidden;
