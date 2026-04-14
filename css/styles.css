@@ -169,6 +169,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: fill;   /* fill to match exact container aspect-ratio — no stretch */
+    transform: translateY(-2%);
     z-index: 4;
     pointer-events: none; /* video controls remain clickable underneath */
 }
