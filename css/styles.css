@@ -154,7 +154,7 @@ body {
 .frame-outer {
     position: relative;
     width: calc(100vw - 40px);   /* full screen width minus 20px padding each side */
-    aspect-ratio: 4906 / 3978;   /* matches frame-image-15.png natural dimensions */
+    aspect-ratio: 10244 / 8438;   /* matches frame-image-16.png natural dimensions */
     display: flex;
     align-items: center;
     justify-content: center;
