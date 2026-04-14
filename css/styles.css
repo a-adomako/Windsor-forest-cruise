@@ -176,6 +176,14 @@ body {
 
 .frame-overlay-mobile {
     display: none; /* hidden on desktop; shown on mobile via breakpoint */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    transform: translate(-2%, -2%);
+    z-index: 4;
+    pointer-events: none;
 }
 
 /* Video sits centered; frame image shows as a natural border around it */
@@ -775,7 +783,7 @@ body {
     .frame-outer          { width: 110vw; max-width: none; margin-left: -5vw; }
     .video-box            { width: 57%; transform: translate(2%, 1%); }
     .frame-overlay        { display: none; }
-    .frame-overlay-mobile { display: block; }
+    .frame-overlay-mobile { display: block; } /* show mobile image, hide desktop image */
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
