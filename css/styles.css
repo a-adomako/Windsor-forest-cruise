@@ -781,7 +781,7 @@ body {
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
     .frame-outer          { width: 110vw; max-width: none; margin-left: -5vw; }
-    .video-box            { width: 57%; transform: translate(2%, 1%); }
+    .video-box            { width: 57%; transform: translate(2%, 3%); }
     .frame-overlay        { display: none; }
     .frame-overlay-mobile { display: block; } /* show mobile image, hide desktop image */
 
