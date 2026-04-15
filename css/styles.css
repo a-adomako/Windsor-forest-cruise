@@ -423,13 +423,9 @@ body {
 ══════════════════════════════════════════════════════════ */
 .summary-section {
     text-align: center;
-    padding: 12px 24px 12px;
+    padding: 4px 20px 8px;
     max-width: 640px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.28);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 10px;
 }
 
 .tagline {
@@ -442,7 +438,7 @@ body {
 }
 
 .summary-body {
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-size: clamp(1.3rem, 1.82vw, 1.56rem);
     color: #1a3a2d;
     line-height: 1.7;
     text-shadow: 0 1px 4px rgba(255,255,255,0.7);
