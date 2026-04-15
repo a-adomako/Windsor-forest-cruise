@@ -340,6 +340,7 @@ body {
 .countdown-section {
     text-align: center;
     padding: 1px 0 20px;
+    margin-top: -8vw;
 }
 
 .countdown-eyebrow {
