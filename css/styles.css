@@ -145,7 +145,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 13px 0 2px;
+    padding: 13px 0 1px;
     overflow: visible;  /* doves bleed outward */
     position: relative;
     z-index: 600; /* above grain overlay (500) so video is clean */
@@ -339,7 +339,7 @@ body {
 ══════════════════════════════════════════════════════════ */
 .countdown-section {
     text-align: center;
-    padding: 2px 0 20px;
+    padding: 1px 0 20px;
 }
 
 .countdown-eyebrow {
