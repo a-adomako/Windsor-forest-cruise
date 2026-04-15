@@ -80,12 +80,13 @@ body {
     justify-content: center;
     gap: 16px;
     font-size: 0.82rem;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #1a3a2d;
     margin-bottom: 6px;
     opacity: 1;
+    text-shadow: 0 1px 4px rgba(255,255,255,0.7);
 }
 
 .eyebrow-line {
@@ -405,6 +406,7 @@ body {
     color: #1a3a2d;
     margin-top: 14px;
     letter-spacing: 0.03em;
+    text-shadow: 0 1px 4px rgba(255,255,255,0.7);
 }
 
 /* Expired message */
@@ -439,6 +441,7 @@ body {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: #1a3a2d;
     line-height: 1.7;
+    text-shadow: 0 1px 4px rgba(255,255,255,0.7);
 }
 
 .summary-line { display: block; }
