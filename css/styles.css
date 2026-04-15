@@ -424,7 +424,7 @@ body {
 .summary-section {
     text-align: center;
     padding: 4px 20px 8px;
-    max-width: 640px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -438,7 +438,7 @@ body {
 }
 
 .summary-body {
-    font-size: clamp(1.3rem, 1.82vw, 1.56rem);
+    font-size: clamp(1.17rem, 1.64vw, 1.4rem);
     color: #1a3a2d;
     line-height: 1.7;
     text-shadow: 0 1px 4px rgba(255,255,255,0.7);
