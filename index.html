@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windsor Forest Takeover Cruise</title>
     <meta name="description" content="Windsor Forest alumni are taking over Royal Caribbean's Utopia of the Seas. Be the first to know when full details drop.">
+    <meta name="theme-color" content="#f4dec3">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,19 +43,55 @@
     <section class="hero-video" aria-label="Event visual">
         <div class="frame-outer">
 
-            <div class="video-box">
-                <iframe
-                    id="yt-player"
-                    src="https://www.youtube.com/embed/y0_nhqUXLYU?enablejsapi=1"
-                    title="Windsor Forest Takeover Cruise"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+            <div class="video-box" data-video-id="y0_nhqUXLYU">
+                <button
+                    type="button"
+                    id="video-placeholder"
+                    class="video-placeholder"
+                    aria-label="Play Windsor Forest Takeover Cruise video">
+                    <img
+                        class="video-poster"
+                        src="https://i.ytimg.com/vi/y0_nhqUXLYU/hqdefault.jpg"
+                        alt=""
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async">
+                    <span class="vp-overlay"></span>
+                    <span class="vp-content">
+                        <span class="vp-play" aria-hidden="true">&#9658;</span>
+                        <span class="vp-label">Play Video</span>
+                    </span>
+                </button>
+                <noscript>
+                    <iframe
+                        title="Windsor Forest Takeover Cruise"
+                        src="https://www.youtube-nocookie.com/embed/y0_nhqUXLYU?rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </noscript>
             </div>
 
-            <img class="frame-overlay" src="assets/photos/frame-image-19.png?v=1" alt="">
-            <img class="frame-overlay-mobile" src="assets/photos/frame-image-21.png?v=2" alt="">
+            <picture class="frame-picture">
+                <source
+                    media="(max-width: 767px)"
+                    srcset="assets/photos/frame-image-21-mobile.webp"
+                    type="image/webp">
+                <source
+                    media="(max-width: 767px)"
+                    srcset="assets/photos/frame-image-21.png?v=2"
+                    type="image/png">
+                <source
+                    srcset="assets/photos/frame-image-19-desktop.webp"
+                    type="image/webp">
+                <img
+                    class="frame-overlay"
+                    src="assets/photos/frame-image-19.png?v=1"
+                    alt=""
+                    fetchpriority="high"
+                    decoding="async">
+            </picture>
 
         </div>
     </section>
@@ -153,6 +190,11 @@
                                 </select>
                                 <span class="select-arrow" aria-hidden="true">&#9660;</span>
                             </div>
+                        </div>
+
+                        <div class="input-group form-hp" aria-hidden="true">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
                         </div>
 
                         <p id="form-error" class="form-error" role="alert" aria-live="polite" hidden></p>

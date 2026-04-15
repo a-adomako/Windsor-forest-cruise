@@ -19,9 +19,6 @@
     --font-script:  'Caveat', cursive;
     --font-body:    'DM Sans', sans-serif;
 
-    /* --img-collage: frame image now loaded as <img> overlay in HTML */
-    --img-savannah: url('../assets/photos/lunaratelier__Wide_panoramic_photograph_of_a_Savannah_Georgia_b01b1219-e9b8-4c7c-b9e8-6df1c83e5610_2.png');
-    --img-grain:    url('../assets/photos/lunaratelier__Seamless_tileable_film_grain_texture_subtle_ana_01e24dd4-d008-4025-b65e-a13cc9131058_3.png');
 }
 
 /* ── Reset ───────────────────────────────────────────────── */
@@ -38,13 +35,19 @@ html {
 body {
     font-family: var(--font-body);
     background-color: #f4dec3;
-    background-image: url('../assets/photos/sand-surface-texture-beige-background-zen-peace-concept.jpg');
+    background-image: url('../assets/photos/sand-background-mobile.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #1a1a1a;
     line-height: 1.5;
     overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+    body {
+        background-image: url('../assets/photos/sand-background-desktop.webp');
+    }
 }
 
 /* ── Sand Texture — SVG fractal noise over the warm background ─ */
@@ -164,6 +167,13 @@ body {
 }
 
 /* Frame image sits above the video so it overlaps the edges naturally */
+.frame-picture {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
 .frame-overlay {
     position: absolute;
     inset: 0;
@@ -171,20 +181,7 @@ body {
     height: 100%;
     object-fit: fill;   /* fill to match exact container aspect-ratio — no stretch */
     transform: translate(-2%, -2%);
-    z-index: 4;
     pointer-events: none; /* video controls remain clickable underneath */
-}
-
-.frame-overlay-mobile {
-    display: none; /* hidden on desktop; shown on mobile via breakpoint */
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    transform: translate(-2%, -2%);
-    z-index: 4;
-    pointer-events: none;
 }
 
 /* Video sits centered; frame image shows as a natural border around it */
@@ -198,7 +195,8 @@ body {
     transform: translate(1%, 11%);
 }
 
-.video-box iframe {
+.video-box iframe,
+.video-embed {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -209,13 +207,24 @@ body {
 .video-placeholder {
     position: absolute;
     inset: 0;
-    background-image: var(--img-savannah);
-    background-size: cover;
-    background-position: center;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: default;
+    cursor: pointer;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .vp-overlay {
@@ -257,6 +266,11 @@ body {
     transform: scale(1.1);
     background: rgba(0,102,51,0.35);
     border-color: var(--wf-green);
+}
+
+.video-placeholder:focus-visible {
+    outline: 3px solid rgba(255,255,255,0.9);
+    outline-offset: -3px;
 }
 
 .vp-label {
@@ -452,69 +466,6 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
-   CAROUSEL — mobile / tablet only
-══════════════════════════════════════════════════════════ */
-.carousel-section {
-    display: none; /* hidden by default */
-    align-items: center;
-    gap: 10px;
-    padding: 0 0 20px;
-}
-
-@media (max-width: 1199px) {
-    .carousel-section { display: flex; }
-}
-
-.carousel-btn {
-    flex-shrink: 0;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.4);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-btn:hover { border-color: var(--wf-gold); color: var(--wf-gold); }
-
-.carousel-viewport {
-    flex: 1;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    display: flex;
-    gap: 12px;
-    padding: 6px 2px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.carousel-viewport::-webkit-scrollbar { display: none; }
-
-.carousel-item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 160px;
-    height: 110px;
-    background-size: cover;
-    background-position: center;
-    background-color: #1a1a1a;
-    border: 1px solid rgba(201,168,76,0.2);
-    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-.carousel-item:hover {
-    transform: scale(1.04);
-    border-color: rgba(201,168,76,0.5);
-}
-
-/* ══════════════════════════════════════════════════════════
    FORM SECTION — below the fold, distinct background
    z-index 600 sits above the grain overlay (500) so the
    grain doesn't visually muddy the form inputs.
@@ -666,6 +617,14 @@ body {
     border-radius: 3px;
 }
 
+.form-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 /* Submit button — big, bold, prominent */
 .submit-btn {
     width: 100%;
@@ -784,10 +743,8 @@ body {
     .title-line-1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
     .title-line-2 { font-size: clamp(2.6rem, 9vw, 3.6rem); }
 
-    .frame-outer          { width: 110vw; max-width: none; margin-left: -5vw; }
-    .video-box            { width: 57%; transform: translate(2%, 7%); }
-    .frame-overlay        { display: none; }
-    .frame-overlay-mobile { display: block; } /* show mobile image, hide desktop image */
+    .frame-outer   { width: 110vw; max-width: none; margin-left: -5vw; }
+    .video-box     { width: 57%; transform: translate(2%, 7%); }
 
     /* Smaller decos on mobile */
     .deco-dove-a  { width: 80px;  top: -20%;  right: 2%; }
@@ -811,4 +768,13 @@ body {
     .form-title   { font-size: 2.4rem; }
 
     .site-footer  { padding: 14px 16px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

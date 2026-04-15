@@ -1,227 +1,228 @@
 /* ============================================================
    WINDSOR FOREST TAKEOVER CRUISE — main.js
-   Handles: dropdown, countdown, carousel, form submission
+   Handles: video embed, class dropdown, countdown, form submit
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const config = {
+        apiEndpoint: '/api/waitlist',
+        sailDate: '2026-06-19T00:00:00-05:00',
+        videoId: 'y0_nhqUXLYU',
+        classRange: {
+            start: 2026,
+            end: 1967,
+        },
+    };
 
-    /* ────────────────────────────────────────────────────────
-       1. GRADUATING CLASS DROPDOWN
-       Reverse-chronological from 2026 → 1967, then "Other".
-    ──────────────────────────────────────────────────────── */
-    (function populateClassDropdown() {
-        const select = document.getElementById('graduatingClass');
-        if (!select) return;
+    initVideoEmbed(config.videoId);
+    initGraduatingClassDropdown(config.classRange);
+    initFooterYear();
+    initCountdown(config.sailDate);
+    initWaitlistForm(config.apiEndpoint);
+});
 
-        for (let year = 2026; year >= 1967; year--) {
-            const opt = document.createElement('option');
-            opt.value = year;
-            opt.textContent = `Class of ${year}`;
-            select.appendChild(opt);
-        }
+function initGraduatingClassDropdown(range) {
+    const select = document.getElementById('graduatingClass');
+    if (!select) return;
 
-        const other = document.createElement('option');
-        other.value = 'Other/Staff/Friend';
-        other.textContent = 'Other / Staff / Friend';
-        select.appendChild(other);
-    })();
+    const fragment = document.createDocumentFragment();
 
-    /* ────────────────────────────────────────────────────────
-       2. FOOTER YEAR
-    ──────────────────────────────────────────────────────── */
-    const yearEl = document.getElementById('current-year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    /* ────────────────────────────────────────────────────────
-       3. COUNTDOWN TIMER
-       Change SAIL_DATE to the real event date when confirmed.
-       Format: 'YYYY-MM-DDTHH:MM:SS-05:00' (Eastern Time)
-    ──────────────────────────────────────────────────────── */
-    const SAIL_DATE = new Date('2026-06-19T00:00:00-05:00').getTime();
-
-    const daysEl    = document.getElementById('days');
-    const hoursEl   = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    const cdWrap    = document.getElementById('countdown-container');
-
-    function pad(n) {
-        return String(n).padStart(2, '0');
+    for (let year = range.start; year >= range.end; year -= 1) {
+        const option = document.createElement('option');
+        option.value = String(year);
+        option.textContent = `Class of ${year}`;
+        fragment.appendChild(option);
     }
 
-    function updateCountdown() {
-        const diff = SAIL_DATE - Date.now();
+    const other = document.createElement('option');
+    other.value = 'Other/Staff/Friend';
+    other.textContent = 'Other / Staff / Friend';
+    fragment.appendChild(other);
+
+    select.appendChild(fragment);
+}
+
+function initFooterYear() {
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+        yearEl.textContent = String(new Date().getFullYear());
+    }
+}
+
+function initCountdown(sailDateValue) {
+    const targetTime = new Date(sailDateValue).getTime();
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const container = document.getElementById('countdown-container');
+
+    if (!container || !Number.isFinite(targetTime)) return;
+
+    let timerId = null;
+
+    const pad = (value) => String(value).padStart(2, '0');
+
+    const renderExpiredState = () => {
+        container.innerHTML = '<p class="countdown-expired">IT\'S TIME.<br>LET\'S SAIL. &#9875;</p>';
+    };
+
+    const updateCountdown = () => {
+        const diff = targetTime - Date.now();
 
         if (diff <= 0) {
-            clearInterval(timerInterval);
-            if (cdWrap) {
-                cdWrap.innerHTML =
-                    '<p class="countdown-expired">IT\'S TIME.<br>LET\'S SAIL. &#9875;</p>';
+            if (timerId !== null) {
+                clearInterval(timerId);
             }
+            renderExpiredState();
             return;
         }
 
-        const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        if (daysEl)    daysEl.textContent    = pad(days);
-        if (hoursEl)   hoursEl.textContent   = pad(hours);
+        if (daysEl) daysEl.textContent = pad(days);
+        if (hoursEl) hoursEl.textContent = pad(hours);
         if (minutesEl) minutesEl.textContent = pad(minutes);
         if (secondsEl) secondsEl.textContent = pad(seconds);
+    };
+
+    updateCountdown();
+    if (targetTime > Date.now()) {
+        timerId = window.setInterval(updateCountdown, 1000);
     }
+}
 
-    updateCountdown(); // run immediately to avoid 1-second flash
-    const timerInterval = setInterval(updateCountdown, 1000);
+function initVideoEmbed(defaultVideoId) {
+    const videoBox = document.querySelector('.video-box');
+    const placeholder = document.getElementById('video-placeholder');
+    if (!videoBox || !placeholder) return;
 
-    /* ────────────────────────────────────────────────────────
-       4. PHOTO CAROUSEL
-       Uses CSS scroll-snap. Buttons scroll by one item width.
-       Auto-scrolls every 3s; pauses on hover.
-    ──────────────────────────────────────────────────────── */
-    (function initCarousel() {
-        const viewport = document.querySelector('.carousel-viewport');
-        const prevBtn  = document.querySelector('.carousel-prev');
-        const nextBtn  = document.querySelector('.carousel-next');
-        if (!viewport) return;
+    const videoId = videoBox.dataset.videoId || defaultVideoId;
+    if (!videoId) return;
 
-        const SCROLL_AMOUNT = 150; // px per button click — approx one item
+    const mountEmbed = () => {
+        if (videoBox.querySelector('iframe')) return;
 
-        function scrollBy(amount) {
-            viewport.scrollBy({ left: amount, behavior: 'smooth' });
-        }
+        const iframe = document.createElement('iframe');
+        iframe.className = 'video-embed';
+        iframe.title = 'Windsor Forest Takeover Cruise';
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+        iframe.loading = 'eager';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
 
-        if (prevBtn) prevBtn.addEventListener('click', () => scrollBy(-SCROLL_AMOUNT));
-        if (nextBtn) nextBtn.addEventListener('click', () => scrollBy(SCROLL_AMOUNT));
+        placeholder.remove();
+        videoBox.appendChild(iframe);
+    };
 
-        // Auto-scroll
-        let autoId = setInterval(() => scrollBy(SCROLL_AMOUNT), 3200);
+    placeholder.addEventListener('click', mountEmbed, { once: true });
+}
 
-        // Wrap around: if at end, jump to start
-        viewport.addEventListener('scrollend', () => {
-            const atEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 8;
-            if (atEnd) {
-                viewport.scrollTo({ left: 0, behavior: 'instant' });
-            }
-        });
+function initWaitlistForm(apiEndpoint) {
+    const form = document.getElementById('rsvp-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+    const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+    const formError = document.getElementById('form-error');
+    const formWrap = document.getElementById('form-container');
+    const successMsg = document.getElementById('success-message');
 
-        // Pause on hover / touch
-        viewport.addEventListener('mouseenter', () => clearInterval(autoId));
-        viewport.addEventListener('touchstart', () => clearInterval(autoId), { passive: true });
-        viewport.addEventListener('mouseleave', () => {
-            autoId = setInterval(() => scrollBy(SCROLL_AMOUNT), 3200);
-        });
-    })();
+    if (!form || !submitBtn || !formError || !formWrap || !successMsg) return;
 
-    /* ────────────────────────────────────────────────────────
-       5. FORM VALIDATION & SUBMISSION
-       ─────────────────────────────────────────────────────
-       SETUP CHECKLIST:
-         1. Deploy apps-script/code.gs as a Google Apps Script Web App.
-            (Extensions → Apps Script → Deploy → New Deployment → Web App
-             → Execute as: Me, Who has access: Anyone)
-         2. Copy the generated web app URL and paste it into APPS_SCRIPT_URL below.
-         3. Uncomment the fetch() block (find "UNCOMMENT FETCH").
+    const controllerTimeoutMs = 12000;
 
-       reCAPTCHA (optional):
-         4. Uncomment the <script> tag in index.html and add your site key.
-         5. Uncomment the grecaptcha.execute() lines below.
-    ──────────────────────────────────────────────────────── */
-
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbP7ViDQXmqLOK8z234p3eJEyx1XaK_VRQaforZM0hNf3qfwoH5wrvhxyo8j68DfgE/exec';
-
-    const form        = document.getElementById('rsvp-form');
-    const submitBtn   = document.getElementById('submit-btn');
-    const btnText     = submitBtn && submitBtn.querySelector('.btn-text');
-    const btnSpinner  = submitBtn && submitBtn.querySelector('.btn-spinner');
-    const formError   = document.getElementById('form-error');
-    const formWrap    = document.getElementById('form-container');
-    const successMsg  = document.getElementById('success-message');
-
-    function showError(msg) {
-        if (!formError) return;
-        formError.textContent = msg;
+    const showError = (message) => {
+        formError.textContent = message;
         formError.hidden = false;
-    }
+    };
 
-    function clearError() {
-        if (!formError) return;
+    const clearError = () => {
         formError.textContent = '';
         formError.hidden = true;
-    }
+    };
 
-    function setLoading(loading) {
+    const setLoading = (loading) => {
         submitBtn.disabled = loading;
-        if (btnText)    btnText.style.display    = loading ? 'none' : 'inline';
-        if (btnSpinner) btnSpinner.style.display = loading ? 'inline-block' : 'none';
-    }
+        submitBtn.setAttribute('aria-busy', loading ? 'true' : 'false');
+        if (btnText) btnText.hidden = loading;
+        if (btnSpinner) {
+            btnSpinner.hidden = !loading;
+            btnSpinner.style.display = loading ? 'inline-block' : 'none';
+        }
+    };
 
-    function validatePhone(value) {
-        // Allow digits, spaces, dashes, parens, +
-        const digits = value.replace(/\D/g, '');
-        return digits.length >= 10;
-    }
+    const validatePhone = (value) => value.replace(/\D/g, '').length >= 10;
+    const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-    function validateEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    }
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        clearError();
 
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            clearError();
+        const payload = {
+            firstName: document.getElementById('firstName')?.value.trim() || '',
+            lastName: document.getElementById('lastName')?.value.trim() || '',
+            email: document.getElementById('email')?.value.trim() || '',
+            phone: document.getElementById('phone')?.value.trim() || '',
+            graduatingClass: document.getElementById('graduatingClass')?.value || '',
+            company: document.getElementById('company')?.value.trim() || '',
+        };
 
-            const firstName      = document.getElementById('firstName').value.trim();
-            const lastName       = document.getElementById('lastName').value.trim();
-            const email          = document.getElementById('email').value.trim();
-            const phone          = document.getElementById('phone').value.trim();
-            const graduatingClass = document.getElementById('graduatingClass').value;
+        if (!payload.firstName || !payload.lastName) {
+            showError('Please enter your first and last name.');
+            return;
+        }
 
-            // ── Client-side validation ──
-            if (!firstName || !lastName) {
-                showError('Please enter your first and last name.');
-                return;
+        if (!validateEmail(payload.email)) {
+            showError('Please enter a valid email address.');
+            return;
+        }
+
+        if (!validatePhone(payload.phone)) {
+            showError('Please enter a valid phone number (10+ digits).');
+            return;
+        }
+
+        if (!payload.graduatingClass) {
+            showError('Please select your graduating class.');
+            return;
+        }
+
+        setLoading(true);
+
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), controllerTimeoutMs);
+
+        try {
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+                signal: controller.signal,
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Unable to submit your information right now.');
             }
-            if (!validateEmail(email)) {
-                showError('Please enter a valid email address.');
-                return;
-            }
-            if (!validatePhone(phone)) {
-                showError('Please enter a valid phone number (10+ digits).');
-                return;
-            }
-            if (!graduatingClass) {
-                showError('Please select your graduating class.');
-                return;
-            }
 
-            setLoading(true);
-
-            const payload = { firstName, lastName, email, phone, graduatingClass };
-
-            try {
-                await fetch(APPS_SCRIPT_URL, {
-                    method:  'POST',
-                    mode:    'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body:    JSON.stringify(payload),
-                });
-
-                // Optional reCAPTCHA v3 token (uncomment if using reCAPTCHA):
-                // payload.recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' });
-
-                // ── Show success state ──
-                if (formWrap)   formWrap.hidden = true;
-                if (successMsg) successMsg.hidden = false;
-
-            } catch (err) {
-                console.error('Form submission error:', err);
-                showError('Something went wrong. Please try again or contact us directly.');
-            } finally {
-                setLoading(false);
-            }
-        });
-    }
-
-});
+            form.reset();
+            formWrap.hidden = true;
+            successMsg.hidden = false;
+        } catch (error) {
+            const message = error.name === 'AbortError'
+                ? 'The request took too long. Please try again.'
+                : error.message || 'Something went wrong. Please try again or contact us directly.';
+            showError(message);
+        } finally {
+            window.clearTimeout(timeoutId);
+            setLoading(false);
+        }
+    });
+}

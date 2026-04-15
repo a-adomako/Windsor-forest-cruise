@@ -12,12 +12,13 @@ windsor-forest-cruise/
 ├── css/
 │   └── styles.css          # Styling variables and rules
 ├── js/
-│   └── main.js             # Countdown timer & form submission logic
+│   └── main.js             # Video, countdown, and form logic
+├── api/
+│   └── waitlist.js         # Vercel serverless proxy for verified form submissions
 ├── apps-script/
-│   └── code.gs             # Google Apps Script for the backend Google Sheet
+│   └── code.gs             # Google Apps Script receiver for the backend Google Sheet
 └── assets/
-    ├── collage-frame.png   # The hero visual element
-    └── photos/             # Directory for carousel items (if added later)
+    └── photos/             # Production images + optimized web variants
 ```
 
 ### 1. How to deploy to Netlify/Vercel
@@ -40,7 +41,7 @@ In both Netlify and Vercel:
 4. After DNS propagates (can take up to 24h depending on your registrar), the site will work perfectly under your custom domain. SSL/HTTPS is generated automatically!
 
 ### 3. Google Sheets Integration Setup (For Form RSVPs)
-We implemented a form that does not require a database—it just sends the inputted data directly to a Google Sheet using Google Apps Script.
+The site now submits to a local Vercel serverless endpoint at `/api/waitlist`, and that function forwards validated data to Google Apps Script. This keeps the frontend on same-origin requests and allows the UI to confirm success or failure properly.
 
 **Setup Instructions:**
 1. Open up Google Sheets and create a new sheet with these headers representing your columns: `Timestamp | First Name | Last Name | Email | Phone | Graduating Class`.
@@ -52,26 +53,23 @@ We implemented a form that does not require a database—it just sends the input
    - **Execute as:** "Me"
    - **Who has access:** "Anyone"
 7. Click "Deploy". Note: Google will ask you to review permissions. Give it permission to manage your sheet.
-8. After authorizing, Google will give you a **Web app URL**. Copy this block of text.
-9. Open `js/main.js` in your website folder, find `const APPS_SCRIPT_URL = '...'` (around line 25), and paste your newly generated link there! 
-10. At this point, you'll need to uncomment the `fetch(APPS_SCRIPT_URL...)` block in the javascript in order for data to submit. It's safe to test now.
+8. After authorizing, Google will give you a **Web app URL**. Copy it.
+9. In Vercel, add an environment variable named `GOOGLE_APPS_SCRIPT_URL` and set it to that web app URL.
+10. Redeploy the site. The frontend should continue posting to `/api/waitlist`; no frontend code changes are needed.
 
 ### 4. How to Change Event Content and Variables
 
 **Video Link:**
-If you want to swap the placeholder YouTube embed to the real one:
-Open `index.html` and locate the `<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ...">` tag. Replace the `src` URL with your client's new YouTube embed code.
+If you want to swap the YouTube video:
+Open `index.html` and update the `data-video-id` value on `.video-box`, then update the poster thumbnail URL if needed.
 
 **Reunion Countdown Date:**
-In `js/main.js`, near line 65 you'll find:
-`const REUNION_DATE = new Date('2027-01-01T00:00:00-05:00').getTime();`
-Change `2027-01-01` to the desired format (YYYY-MM-DD), ensuring `-05:00` stays (that keeps the timezone at Eastern Time / Savannah time).
+In `js/main.js`, update `config.sailDate` near the top of the file.
+Keep the timezone offset in the ISO string so the countdown stays aligned with Eastern Time / Savannah time.
 
 **Adding/Removing Form Fields:**
 If you require more fields:
 1. Add a new `<input>` block inside `index.html`. Give it an `id` and a `name`.
-2. In `app-script/code.gs`, add `data.yourNewFieldName` to the `.appendRow([])` array corresponding to its new column.
-3. In `js/main.js`, add the mapping by duplicating a line in the `formData` object: `yourNewFieldName: document.getElementById('newFieldId').value.trim(),`
-
-**Adding the Photo Carousel (Currently Hidden/Placeholder):**
-Add `.jpg`/`.png` photos into `assets/photos/`. Map them in `index.html` within the `<div class="carousel-track">` items by giving each item an inline `style="background-image: url('assets/photos/pic.jpg')"`! If you add a ton of photos, you may want to research a CSS scroll-snap carousel approach, but this starts you off lightweight!
+2. In `api/waitlist.js`, add validation/sanitization for the new field.
+3. In `apps-script/code.gs`, add the sanitized value to the `.appendRow([])` array corresponding to its new column.
+4. In `js/main.js`, add the mapping to the `payload` object in `initWaitlistForm()`.
