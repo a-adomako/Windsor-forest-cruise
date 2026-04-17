@@ -44,17 +44,23 @@ module.exports = async (req, res) => {
         const result = safeParse(text);
 
         if (!response.ok || !result || result.result !== 'success') {
+            console.error('Waitlist upstream error', {
+                status: response.status,
+                rawBody: text.slice(0, 500),
+                parsed: result,
+            });
             const message = result && result.message
                 ? result.message
-                : 'The waitlist service did not confirm the submission.';
+                : `Upstream error (status ${response.status}).`;
             return res.status(502).json({ success: false, message });
         }
 
         return res.status(200).json({ success: true });
     } catch (error) {
+        console.error('Waitlist proxy error', error);
         const message = error.name === 'AbortError'
             ? 'The waitlist service timed out.'
-            : 'The waitlist service is temporarily unavailable.';
+            : `Proxy error: ${error.message || 'unknown'}`;
         return res.status(502).json({ success: false, message });
     } finally {
         clearTimeout(timeoutId);
